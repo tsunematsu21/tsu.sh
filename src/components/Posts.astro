@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import DateText from "@components/DateText.astro";
+
+interface Props {
+  posts?: CollectionEntry<"posts">[];
+}
+
+const {
+  posts = (await getCollection("posts")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  ),
+} = Astro.props;
+
+const postsByYear = new Map<number, typeof posts>();
+
+for (const post of posts) {
+  const year = post.data.pubDate.getFullYear();
+  const yearPosts = postsByYear.get(year) ?? [];
+
+  yearPosts.push(post);
+  postsByYear.set(year, yearPosts);
+}
+---
+
+<div class="space-y-12">
+  {Array.from(postsByYear).map(([year, yearPosts]) => (
+    <section class="space-y-8">
+      <h2 class="text-2xl font-bold">{year}</h2>
+      <ul class="space-y-4">
+        {yearPosts.map((post) => (
+          <li>
+            <a href={`/posts/${post.id}`} class="inline-flex flex-col md:flex-row md:items-center flex-wrap md:gap-2">
+              <span>{post.data.title}</span>
+              <span class="text-sm opacity-50">
+                <DateText date={post.data.pubDate} dateOnly />
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</div>

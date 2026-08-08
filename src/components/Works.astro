@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+
+const categories = (await getCollection("works")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<div class="space-y-12">
+  {categories.map((category) => (
+    <section class="space-y-4">
+      <h2 class="text-2xl font-bold">{category.id}</h2>
+      <ul class="space-y-4">
+        {category.data.items.map((work) => (
+          <li>
+            <a
+              href={work.url}
+              target="_blank"
+              rel="noreferrer"
+              class="inline-flex items-center gap-3"
+            >
+              <span
+                class:list={[work.icon, "text-3xl"]}
+                aria-hidden="true"
+              ></span>
+              <span class="inline-flex flex-col">
+                <span class="inline-flex items-center gap-1">
+                  <span class="font-bold">{work.name}</span>
+                  <span class="i-ph-arrow-up-right-bold text-xs" />
+                </span>
+                <span class="text-sm opacity-50">{work.description}</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</div>

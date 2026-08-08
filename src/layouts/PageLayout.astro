@@ -1,0 +1,51 @@
+---
+import Prose from "@components/Prose.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import type { MarkdownLayoutProps } from "astro";
+
+interface Frontmatter {
+  title: string;
+  description?: string;
+  pubDate?: Date;
+  tags?: string[];
+  prose?: boolean;
+}
+
+type Props =
+  | MarkdownLayoutProps<Frontmatter>
+  | {
+      frontmatter: Frontmatter;
+    };
+
+const { frontmatter } = Astro.props;
+const prose = frontmatter.prose ?? false;
+const ContentTag = prose ? "article" : "section";
+---
+
+<BaseLayout>
+  <ContentTag class="space-y-12">
+    <header class="space-y-2">
+      {frontmatter.pubDate && <p class="text-xs opacity-50">
+        <time
+          datetime={frontmatter.pubDate.toISOString()}
+          >
+          {frontmatter.pubDate.toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+          })}
+        </time>
+      </p>}
+      <h1 class="font-bold text-3xl">{frontmatter.title}</h1>
+      {frontmatter.description && <p class="text-xs opacity-50">
+        {frontmatter.description}
+      </p>}
+    </header>
+
+    {prose ? <Prose>
+      <slot />
+    </Prose> : <div>
+      <slot />
+    </div>}
+  </ContentTag>
+</BaseLayout>

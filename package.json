@@ -1,0 +1,38 @@
+{
+  "name": "tsu.sh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "biome check --write"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.10.0",
+      "onFail": "download"
+    }
+  },
+  "type": "module",
+  "dependencies": {
+    "@astrojs/markdown-remark": "^7.2.2",
+    "@astrojs/mdx": "^7.0.5",
+    "@astrojs/rss": "^4.0.19",
+    "astro": "^7.1.6",
+    "remark-link-card-plus": "^0.8.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.7",
+    "@iconify-json/ph": "^1.2.2",
+    "@unocss/astro": "^66.7.5",
+    "@unocss/preset-icons": "^66.7.5",
+    "@unocss/reset": "^66.7.5",
+    "unocss": "^66.7.5"
+  }
+}

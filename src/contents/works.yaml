@@ -1,0 +1,15 @@
+Configuration:
+  order: 1
+  items:
+    - name: dotfiles
+      url: https://github.com/tsunematsu21/dotfiles
+      description: My macOS dotfiles
+      icon: i-ph-wrench
+
+Automation:
+  order: 2
+  items:
+    - name: actions-publish-gh-pages
+      url: https://github.com/tsunematsu21/actions-publish-gh-pages
+      description: A GitHub Action to publish static website using GitHub Pages
+      icon: i-ph-robot

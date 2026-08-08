@@ -1,0 +1,83 @@
+<div class="dot-background" aria-hidden="true">
+  <!-- biome-ignore lint/a11y/noSvgWithoutTitle: Decorative background hidden from assistive technology. -->
+  <svg
+    class="dot-background__svg"
+    viewBox="0 0 1600 1000"
+    preserveAspectRatio="xMidYMid slice"
+  >
+    <g class="dot-background__wave dot-background__wave--one">
+      <path d="M-120 160C180 50 350 270 650 160s520-110 1070 30" />
+      <path d="M-120 310C180 200 350 420 650 310s520-110 1070 30" />
+      <path d="M-120 460C180 350 350 570 650 460s520-110 1070 30" />
+      <path d="M-120 610C180 500 350 720 650 610s520-110 1070 30" />
+      <path d="M-120 760C180 650 350 870 650 760s520-110 1070 30" />
+    </g>
+    <g class="dot-background__wave dot-background__wave--two">
+      <path d="M-120 80C150 190 410-30 680 80s500 210 1040 10" />
+      <path d="M-120 230C150 340 410 120 680 230s500 210 1040 10" />
+      <path d="M-120 380C150 490 410 270 680 380s500 210 1040 10" />
+      <path d="M-120 530C150 640 410 420 680 530s500 210 1040 10" />
+      <path d="M-120 680C150 790 410 570 680 680s500 210 1040 10" />
+      <path d="M-120 830C150 940 410 720 680 830s500 210 1040 10" />
+    </g>
+  </svg>
+</div>
+
+<style>
+.dot-background {
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  z-index: 0;
+}
+
+.dot-background__svg {
+  color: rgb(0 0 0 / 10%);
+  height: 120%;
+  left: -10%;
+  position: absolute;
+  top: -10%;
+  width: 120%;
+}
+
+.dot-background__wave {
+  fill: none;
+  stroke: currentColor;
+  stroke-dasharray: 0 18;
+  stroke-linecap: round;
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke;
+}
+
+.dot-background__wave--one {
+  animation: dot-flow-one 8s linear infinite;
+}
+
+.dot-background__wave--two {
+  animation: dot-flow-two 11s linear infinite;
+  opacity: 0.45;
+}
+
+:global(html.dark) .dot-background__svg {
+  color: rgb(255 255 255 / 13%);
+}
+
+@keyframes dot-flow-one {
+  to {
+    stroke-dashoffset: -18;
+  }
+}
+
+@keyframes dot-flow-two {
+  to {
+    stroke-dashoffset: 18;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot-background__wave {
+    animation: none;
+  }
+}
+</style>

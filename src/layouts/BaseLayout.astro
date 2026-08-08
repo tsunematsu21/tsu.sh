@@ -1,0 +1,36 @@
+---
+import Background from "@components/Background.astro";
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+---
+
+<html lang="ja">
+  <body>
+    <Background />
+    <div
+      class="relative z-10 flex flex-col min-h-screen max-w-3xl mx-auto px-8"
+    >
+      <header>
+        <Header />
+      </header>
+      <main class="flex-grow py-16">
+        <slot />
+      </main>
+      <footer>
+        <Footer />
+      </footer>
+    </div>
+  </body>
+</html>
+
+<style is:global>
+body {
+  font-family: system-ui, sans-serif;
+  @apply bg-white text-black;
+  @apply dark:(bg-black/90 text-white);
+}
+
+body a {
+  @apply hover:opacity-50 transition-all;
+}
+</style>
