@@ -1,22 +1,22 @@
 ---
 import Background from "@components/Background.astro";
+import BaseHead from "@components/BaseHead.astro";
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
+import PageTransition from "@components/PageTransition.astro";
+
+interface Props {
+  pageTitle?: string;
+  description?: string;
+  image?: string;
+}
+
+const { pageTitle, description, image } = Astro.props;
 ---
 
 <html lang="ja">
   <head>
-    <script is:inline>
-    const localStorageTheme = localStorage.getItem("theme");
-    const theme = ["dark", "light"].includes(localStorageTheme)
-      ? localStorageTheme
-      : window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
-
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    localStorage.setItem("theme", theme);
-    </script>
+    <BaseHead pageTitle={pageTitle} description={description} image={image} />
     <style is:inline>
     html {
       background: #fff;
@@ -44,50 +44,7 @@ import Header from "@components/Header.astro";
         <Footer />
       </footer>
     </div>
-    <script is:inline>
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    );
-
-    document.addEventListener("click", (event) => {
-      const link = event.target.closest("a");
-
-      if (
-        !link ||
-        event.defaultPrevented ||
-        event.button !== 0 ||
-        event.metaKey ||
-        event.ctrlKey ||
-        event.shiftKey ||
-        event.altKey ||
-        link.target ||
-        link.hasAttribute("download")
-      ) {
-        return;
-      }
-
-      const destination = new URL(link.href);
-      const isSamePageHash =
-        destination.pathname === window.location.pathname &&
-        destination.search === window.location.search &&
-        destination.hash;
-
-      if (
-        destination.origin !== window.location.origin ||
-        isSamePageHash ||
-        prefersReducedMotion.matches
-      ) {
-        return;
-      }
-
-      event.preventDefault();
-      document.documentElement.dataset.pageLeaving = "";
-
-      window.setTimeout(() => {
-        window.location.href = destination.href;
-      }, 240);
-    });
-    </script>
+    <PageTransition />
   </body>
 </html>
 
@@ -102,10 +59,6 @@ body a {
   @apply hover:opacity-50 transition-all;
 }
 
-main {
-  animation: page-enter 360ms ease-out both;
-}
-
 ::view-transition-image-pair(root) {
   isolation: auto;
 }
@@ -114,30 +67,5 @@ main {
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
-}
-
-html[data-page-leaving] main {
-  animation: page-exit 240ms ease-in both;
-}
-
-@keyframes page-exit {
-  to {
-    opacity: 0;
-    transform: translateY(-0.5rem);
-  }
-}
-
-@keyframes page-enter {
-  from {
-    opacity: 0;
-    transform: translateY(1rem);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  main,
-  html[data-page-leaving] main {
-    animation: none;
-  }
 }
 </style>

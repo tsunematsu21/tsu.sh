@@ -6,6 +6,16 @@
 ></button>
 
 <script is:inline>
+const localStorageTheme = localStorage.getItem("theme");
+const theme = ["dark", "light"].includes(localStorageTheme)
+  ? localStorageTheme
+  : window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+
+document.documentElement.classList.toggle("dark", theme === "dark");
+localStorage.setItem("theme", theme);
+
 const handleToggleClick = (event) => {
   const element = document.documentElement;
   const updateTheme = () => {

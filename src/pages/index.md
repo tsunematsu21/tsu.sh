@@ -1,7 +1,7 @@
 ---
 layout: "@layouts/PageLayout.astro"
 title: Masato Tsunematsu
-description: a.k.a. @tsunematsu21
+description: A cola drinking IT infrastructure engineer
 prose: true
 ---
 

@@ -22,7 +22,7 @@ const prose = frontmatter.prose ?? false;
 const ContentTag = prose ? "article" : "section";
 ---
 
-<BaseLayout>
+<BaseLayout pageTitle={frontmatter.title} description={frontmatter.description}>
   <ContentTag class="space-y-12">
     <header class="space-y-2">
       {frontmatter.pubDate && <p class="text-xs opacity-50">
