@@ -3,6 +3,10 @@ const prefersReducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)",
 );
 
+window.addEventListener("pageshow", () => {
+  delete document.documentElement.dataset.pageLeaving;
+});
+
 document.addEventListener("click", (event) => {
   const link = event.target.closest("a");
 
