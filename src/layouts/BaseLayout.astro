@@ -33,4 +33,14 @@ body {
 body a {
   @apply hover:opacity-50 transition-all;
 }
+
+::view-transition-image-pair(root) {
+  isolation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
 </style>
