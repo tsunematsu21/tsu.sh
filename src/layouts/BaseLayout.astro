@@ -1,9 +1,9 @@
 ---
-import { ClientRouter } from "astro:transitions";
 import Background from "@components/Background.astro";
 import BaseHead from "@components/BaseHead.astro";
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
+import PageTransition from "@components/PageTransition.astro";
 
 interface Props {
   pageTitle?: string;
@@ -17,7 +17,6 @@ const { pageTitle, description, image } = Astro.props;
 <html lang="ja">
   <head>
     <BaseHead pageTitle={pageTitle} description={description} image={image} />
-    <ClientRouter />
     <style is:inline>
     html {
       background: #fff;
@@ -45,6 +44,7 @@ const { pageTitle, description, image } = Astro.props;
         <Footer />
       </footer>
     </div>
+    <PageTransition />
   </body>
 </html>
 
