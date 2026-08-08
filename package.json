@@ -33,6 +33,7 @@
     "@unocss/astro": "^66.7.5",
     "@unocss/preset-icons": "^66.7.5",
     "@unocss/reset": "^66.7.5",
+    "lefthook": "^2.1.10",
     "unocss": "^66.7.5"
   }
 }
