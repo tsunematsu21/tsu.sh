@@ -70,3 +70,19 @@ document
   .getElementById("themeToggle")
   ?.addEventListener("click", handleToggleClick);
 </script>
+
+<style is:global>
+html[data-theme-transition] main {
+  view-transition-name: none;
+}
+
+html[data-theme-transition]::view-transition-image-pair(root) {
+  isolation: auto;
+}
+
+html[data-theme-transition]::view-transition-old(root),
+html[data-theme-transition]::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+</style>

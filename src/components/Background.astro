@@ -81,3 +81,18 @@
   }
 }
 </style>
+
+<script is:inline>
+const backgroundAnimations = [
+  { selector: ".dot-background__wave--one", duration: 8000 },
+  { selector: ".dot-background__wave--two", duration: 11000 },
+];
+
+for (const { selector, duration } of backgroundAnimations) {
+  const animation = document.querySelector(selector)?.getAnimations()[0];
+
+  if (animation) {
+    animation.currentTime = Date.now() % duration;
+  }
+}
+</script>

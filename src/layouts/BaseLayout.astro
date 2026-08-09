@@ -3,7 +3,6 @@ import Background from "@components/Background.astro";
 import BaseHead from "@components/BaseHead.astro";
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
-import PageTransition from "@components/PageTransition.astro";
 
 interface Props {
   pageTitle?: string;
@@ -18,9 +17,14 @@ const { pageTitle, description, image } = Astro.props;
   <head>
     <BaseHead pageTitle={pageTitle} description={description} image={image} />
     <style is:inline>
+    @view-transition {
+      navigation: auto;
+    }
+
     html {
       background: #fff;
       color-scheme: light;
+      scrollbar-gutter: stable;
     }
 
     html.dark {
@@ -44,7 +48,6 @@ const { pageTitle, description, image } = Astro.props;
         <Footer />
       </footer>
     </div>
-    <PageTransition />
   </body>
 </html>
 
@@ -59,13 +62,33 @@ body a {
   @apply hover:opacity-50 transition-all;
 }
 
-::view-transition-image-pair(root) {
-  isolation: auto;
+main {
+  view-transition-name: main;
 }
 
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
+::view-transition-group(main) {
+  animation-duration: 600ms;
+}
+
+::view-transition-old(main) {
+  animation: main-exit 240ms ease-in both;
+}
+
+::view-transition-new(main) {
+  animation: main-enter 360ms 240ms ease-out both;
+}
+
+@keyframes main-exit {
+  to {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+}
+
+@keyframes main-enter {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
 }
 </style>
