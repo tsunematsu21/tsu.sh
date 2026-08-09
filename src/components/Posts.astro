@@ -31,7 +31,7 @@ for (const post of posts) {
       <ul class="space-y-4">
         {yearPosts.map((post) => (
           <li>
-            <a href={`/posts/${post.id}`} class="inline-flex flex-col md:flex-row md:items-center flex-wrap md:gap-2">
+            <a href={`/posts/${post.id}`} class="inline-flex flex-(col wrap) md:(flex-row items-center gap-2)">
               <span>{post.data.title}</span>
               <span class="text-sm opacity-50">
                 <DateText date={post.data.pubDate} dateOnly />

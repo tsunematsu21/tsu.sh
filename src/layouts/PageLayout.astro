@@ -1,4 +1,5 @@
 ---
+import DateText from "@components/DateText.astro";
 import Prose from "@components/Prose.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import type { MarkdownLayoutProps } from "astro";
@@ -20,32 +21,22 @@ type Props =
 const { frontmatter } = Astro.props;
 const prose = frontmatter.prose ?? false;
 const ContentTag = prose ? "article" : "section";
+const ContentBodyTag = prose ? Prose : "div";
 ---
 
 <BaseLayout pageTitle={frontmatter.title} description={frontmatter.description}>
   <ContentTag class="space-y-12">
     <header class="space-y-2">
       {frontmatter.pubDate && <p class="text-xs opacity-50">
-        <time
-          datetime={frontmatter.pubDate.toISOString()}
-          >
-          {frontmatter.pubDate.toLocaleDateString("en-US", {
-          month: "short",
-          day: "numeric",
-          year: "numeric",
-          })}
-        </time>
+        <DateText date={frontmatter.pubDate} />
       </p>}
       <h1 class="font-bold text-3xl">{frontmatter.title}</h1>
       {frontmatter.description && <p class="text-xs opacity-50">
         {frontmatter.description}
       </p>}
     </header>
-
-    {prose ? <Prose>
+    <ContentBodyTag>
       <slot />
-    </Prose> : <div>
-      <slot />
-    </div>}
+    </ContentBodyTag>
   </ContentTag>
 </BaseLayout>
