@@ -10,7 +10,7 @@ Hi there,
 
 I'm Masato Tsunematsu, a cola drinking IT infrastructure engineer based in Japan.
 
-<img src="/avatar.webp" class="rounded-full max-w-48 mx-auto">
+<img src="/avatar.webp" alt="avatar" class="rounded-full max-w-48 mx-auto">
 
 ## Biography
 

@@ -1,4 +1,6 @@
 ---
+import Icon from "../assets/icon.svg";
+
 interface Props {
   pageTitle?: string;
   description?: string;
@@ -16,11 +18,13 @@ const title = pageTitle ? `${pageTitle} - ${siteTitle}` : siteTitle;
 ---
 
 <meta charset="utf-8">
-<link rel="icon" type="image/svg+xml" href="/icon.svg">
+<link rel="icon" type="image/svg+xml" href={Icon.src}>
 <meta name="viewport" content="width=device-width">
 <meta name="generator" content={Astro.generator}>
 
 <link rel="canonical" href={canonicalURL}>
+
+<link rel="sitemap" href="/sitemap-index.xml">
 
 <title>{title}</title>
 <meta name="title" content={title}>

@@ -1,5 +1,6 @@
 import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 import remarkLinkCard from "remark-link-card-plus";
 import UnoCSS from "unocss/astro";
@@ -12,6 +13,7 @@ export default defineConfig({
     UnoCSS({
       injectReset: true,
     }),
+    sitemap(),
   ],
   markdown: {
     processor: unified({
