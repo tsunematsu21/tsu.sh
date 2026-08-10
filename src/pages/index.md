@@ -24,3 +24,7 @@ I can transform into legendary warriors known as the Cure Gorilla. With
 the assistance of creatures known as fairies, use their physical powers
 and enhanced Banana to fight against evil forces and organizations who
 create monsters to bring misery to the Earth and further their plans.
+
+## What I do
+
+As an infrastructure engineer, I primarily handle system proposals, design, development, operations, and maintenance using AWS. Recently, I've been involved in numerous projects migrating public sector systems from on-premise to AWS environments.

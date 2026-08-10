@@ -10,6 +10,12 @@ import {
 } from "unocss";
 
 export default defineConfig({
+  shortcuts: [
+    {
+      "bg-base": "bg-white dark:bg-zinc-900",
+      "color-base": "text-black dark:text-white",
+    },
+  ],
   content: {
     filesystem: ["src/**/*.{yaml,yml}"],
     pipeline: {

@@ -16,22 +16,6 @@ const { pageTitle, description, image } = Astro.props;
 <html lang="ja">
   <head>
     <BaseHead pageTitle={pageTitle} description={description} image={image} />
-    <style is:inline>
-    @view-transition {
-      navigation: auto;
-    }
-
-    html {
-      background: #fff;
-      color-scheme: light;
-      scrollbar-gutter: stable;
-    }
-
-    html.dark {
-      background: #18181b;
-      color-scheme: dark;
-    }
-    </style>
   </head>
   <body>
     <Background />
@@ -52,10 +36,22 @@ const { pageTitle, description, image } = Astro.props;
 </html>
 
 <style is:global>
+@view-transition {
+  navigation: auto;
+}
+
+html {
+  scrollbar-gutter: stable;
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
 body {
   font-family: system-ui, sans-serif;
-  @apply bg-white text-black;
-  @apply dark:(bg-zinc-900 text-white);
+  @apply bg-base color-base;
 }
 
 body a {
