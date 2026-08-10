@@ -1,5 +1,13 @@
-Configuration:
+Website:
   order: 1
+  items:
+    - name: tsu.sh
+      url: https://github.com/tsunematsu21/tsu.sh
+      description: A personal website built with Astro
+      icon: i-ph-browser
+
+Configuration:
+  order: 2
   items:
     - name: dotfiles
       url: https://github.com/tsunematsu21/dotfiles
@@ -7,9 +15,23 @@ Configuration:
       icon: i-ph-wrench
 
 Automation:
-  order: 2
+  order: 3
   items:
+    - name: apple-music.sh
+      url: https://github.com/tsunematsu21/apple-music.sh
+      description: Control the macOS Music app from the terminal with AppleScript
+      icon: i-ph-music-notes
     - name: actions-publish-gh-pages
       url: https://github.com/tsunematsu21/actions-publish-gh-pages
-      description: A GitHub Action to publish static website using GitHub Pages
+      description: A GitHub Action to publish a static website using GitHub Pages
       icon: i-ph-robot
+      archived: true
+
+Toys:
+  order: 4
+  items:
+    - name: fb
+      url: https://github.com/tsunematsu21/fb
+      description: FizzBuzz Generic Library in Go
+      icon: i-ph-smiley-wink
+      archived: true

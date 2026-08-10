@@ -24,11 +24,16 @@ const categories = (await getCollection("works")).sort(
                 aria-hidden="true"
               ></span>
               <span class="inline-flex flex-col">
-                <span class="inline-flex items-center gap-1">
+                <span class="inline-flex items-center flex-wrap gap-1">
                   <span class="font-bold">{work.name}</span>
                   <span class="i-ph-arrow-up-right-bold text-xs" />
                 </span>
-                <span class="text-sm opacity-50">{work.description}</span>
+                <span class="inline-flex items-center flex-wrap gap-1">
+                  {work.archived && <span class="inline-block text-xs border border-[#9a6700] text-[#9a6700] dark:(border-[#d29922] text-[#d29922]) px-2 rounded-full">
+                  Archived
+                  </span>}
+                  <span class="text-sm opacity-50">{work.description}</span>
+                </span>
               </span>
             </a>
           </li>

@@ -27,6 +27,7 @@ const works = defineCollection({
         url: z.url(),
         description: z.string(),
         icon: z.string(),
+        archived: z.boolean().optional(),
       }),
     ),
   }),
