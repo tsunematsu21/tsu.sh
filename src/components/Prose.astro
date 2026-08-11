@@ -8,33 +8,47 @@
 <style>
 @layer components {
   .prose {
-    a.remark-link-card-plus__card {
+    .link-card__container {
+      @apply my-5 bg-base color-base;
+    }
+
+    a.link-card {
       @apply grid grid-cols-5 gap-4 w-full outline outline-1 rounded-md no-underline!;
-      .remark-link-card-plus__main {
+
+      .link-card__main {
         @apply col-span-3 flex flex-col justify-between p-4 h-full;
-        .remark-link-card-plus__content {
-          .remark-link-card-plus__title {
-            @apply line-clamp-1;
-          }
-          .remark-link-card-plus__description {
-            @apply flex-1 text-xs opacity-50 line-clamp-2 md:line-clamp-4;
-          }
-        }
-        .remark-link-card-plus__meta {
-          @apply flex items-center justify-start gap-2;
-          .remark-link-card-plus__favicon {
-            @apply mb-0! mt-0!;
-          }
-          .remark-link-card-plus__url {
-            @apply text-xs line-clamp-1;
-          }
+
+        &.link-card__main--full {
+          @apply col-span-5;
         }
       }
-      .remark-link-card-plus__thumbnail {
+
+      .link-card__title {
+        @apply line-clamp-1 font-bold;
+      }
+
+      .link-card__description {
+        @apply flex-1 text-xs line-clamp-2 md:line-clamp-4;
+      }
+
+      .link-card__meta {
+        @apply flex items-center justify-start gap-2;
+      }
+
+      .link-card__favicon {
+        @apply mb-0! mt-0!;
+      }
+
+      .link-card__url {
+        @apply text-xs line-clamp-1;
+      }
+
+      .link-card__thumbnail {
         @apply col-span-2;
-        .remark-link-card-plus__image {
-          @apply object-cover object-center m-0! h-full! w-full rounded-r-md;
-        }
+      }
+
+      .link-card__image {
+        @apply object-cover object-center m-0! h-full! w-full rounded-r-md;
       }
     }
   }

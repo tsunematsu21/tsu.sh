@@ -1,9 +1,9 @@
-import { unified } from "@astrojs/markdown-remark";
+import { satteri } from "@astrojs/markdown-satteri";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
-import remarkLinkCard from "remark-link-card-plus";
 import UnoCSS from "unocss/astro";
+import { externalLinks, linkCards } from "./src/satteri";
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,8 +16,9 @@ export default defineConfig({
     sitemap(),
   ],
   markdown: {
-    processor: unified({
-      remarkPlugins: [remarkLinkCard],
+    processor: satteri({
+      mdastPlugins: [linkCards],
+      hastPlugins: [externalLinks],
     }),
   },
 });
