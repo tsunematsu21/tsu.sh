@@ -32,7 +32,7 @@ const categories = (await getCollection("works")).sort(
                   {work.archived && <span class="inline-block text-xs border border-[#9a6700] text-[#9a6700] dark:(border-[#d29922] text-[#d29922]) px-2 rounded-full">
                   Archived
                   </span>}
-                  <span class="text-sm opacity-50">{work.description}</span>
+                  <span class="text-sm text-muted">{work.description}</span>
                 </span>
               </span>
             </a>

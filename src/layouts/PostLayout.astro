@@ -15,7 +15,7 @@ const { title, description, pubDate } = Astro.props;
 
 <BaseLayout pageTitle={title} description={description}>
   <Content title={title} description={description} article>
-    <p slot="before-heading" class="text-xs opacity-50">
+    <p slot="before-heading" class="text-xs text-muted">
       <DateText date={pubDate} />
     </p>
     <Prose>

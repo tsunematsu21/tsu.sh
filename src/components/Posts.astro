@@ -33,7 +33,7 @@ for (const post of posts) {
           <li>
             <a href={`/posts/${post.id}`} class="inline-flex flex-(col wrap) md:(flex-row items-center gap-2)">
               <span>{post.data.title}</span>
-              <span class="text-sm opacity-50">
+              <span class="text-sm text-muted">
                 <DateText date={post.data.pubDate} dateOnly />
               </span>
             </a>

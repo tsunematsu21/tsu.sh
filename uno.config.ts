@@ -14,6 +14,7 @@ export default defineConfig({
     {
       "bg-base": "bg-white dark:bg-zinc-900",
       "color-base": "text-black dark:text-white",
+      "text-muted": "text-black/50 dark:text-white/50",
     },
   ],
   content: {
