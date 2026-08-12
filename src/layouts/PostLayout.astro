@@ -1,0 +1,25 @@
+---
+import Content from "@components/Content.astro";
+import DateText from "@components/DateText.astro";
+import Prose from "@components/Prose.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+type Props = {
+  title: string;
+  description: string;
+  pubDate: Date;
+};
+
+const { title, description, pubDate } = Astro.props;
+---
+
+<BaseLayout pageTitle={title} description={description}>
+  <Content title={title} description={description} article>
+    <p slot="before-heading" class="text-xs opacity-50">
+      <DateText date={pubDate} />
+    </p>
+    <Prose>
+      <slot />
+    </Prose>
+  </Content>
+</BaseLayout>

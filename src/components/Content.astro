@@ -1,0 +1,23 @@
+---
+type Props = {
+  title: string;
+  description?: string;
+  article?: boolean;
+};
+
+const { title, description, article } = Astro.props;
+
+const ContentTag = article ? "article" : "section";
+---
+
+<ContentTag class="space-y-12">
+  <header class="space-y-2">
+    <slot name="before-heading" />
+    <h1 class="font-bold text-3xl">{title}</h1>
+    {description && <p class="text-xs opacity-50">
+      {description}
+    </p>}
+    <slot name="after-heading" />
+  </header>
+  <slot />
+</ContentTag>

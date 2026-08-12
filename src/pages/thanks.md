@@ -1,5 +1,5 @@
 ---
-layout: "@layouts/PageLayout.astro"
+layout: "@layouts/MarkdownLayout.astro"
 title: Thanks
 description: 謝辞
 prose: true

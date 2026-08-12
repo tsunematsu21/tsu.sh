@@ -1,0 +1,24 @@
+---
+import Content from "@components/Content.astro";
+import Prose from "@components/Prose.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import type { MarkdownLayoutProps } from "astro";
+
+type Props = MarkdownLayoutProps<{
+  title: string;
+  description?: string;
+  prose?: boolean;
+}>;
+
+const { frontmatter } = Astro.props;
+const { title, description, prose } = frontmatter;
+const ContentBodyTag = frontmatter.prose ? Prose : "div";
+---
+
+<BaseLayout pageTitle={frontmatter.title} description={frontmatter.description}>
+  <Content title={title} description={description} article={prose}>
+    <ContentBodyTag>
+      <slot />
+    </ContentBodyTag>
+  </Content>
+</BaseLayout>
