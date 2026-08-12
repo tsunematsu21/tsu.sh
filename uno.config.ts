@@ -18,7 +18,7 @@ export default defineConfig({
     },
   ],
   content: {
-    filesystem: ["src/**/*.{yaml,yml}", "src/satteri.ts"],
+    filesystem: ["src/**/*.{yaml,yml}", "src/satteri/**/*.ts"],
     pipeline: {
       include: [/\.(astro|mdx?|html|[jt]sx|ya?ml|ts)($|\?)/],
     },
