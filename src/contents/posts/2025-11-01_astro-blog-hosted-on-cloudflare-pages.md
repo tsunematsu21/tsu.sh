@@ -17,7 +17,7 @@ https://astro.build
 
 どうせそのうち飽きて更新しなくなるだろうということで、そこまで凝った作りにしなくても良さそうなのと、あまり無料枠とか気にしなくてすみそうな静的コンテンツでのブログ作成をすることを念頭に調査。
 
-他のフレームワークとかと比べてAstroはなんか早いらしい。知らんけど。なんとなく使ってみようと言うことで選定。
+他のフレームワークとかと比べてAstroはなんか速いらしい。知らんけど。なんとなく使ってみようということで選定。
 
 ### Content Collections
 https://docs.astro.build/ja/guides/content-collections/
@@ -36,4 +36,4 @@ https://www.cloudflare.com/ja-jp/developer-platform/products/pages/
 
 安いという理由でCloudflareで独自ドメインを取っていたので、ついでにホスティングもCloudflareに。
 
-最近はAWSのCloudFrontの定額プラン(無料あり)も出たのでそっちも良かったが、CICDとかはCloudflare Pagesの方が色々と準備されていて楽。
+最近はAWSのCloudFrontの定額プラン(無料あり)も出たのでそっちも良かったが、CI/CDとかはCloudflare Pagesの方が色々と準備されていて楽。
