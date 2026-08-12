@@ -1,3 +1,4 @@
+# Runs the required validation for pull requests targeting main.
 name: PR check
 
 on:
