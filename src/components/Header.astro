@@ -4,7 +4,7 @@ import ThemeIcon from "@components/ThemeIcon.astro";
 ---
 
 <nav class="py-8">
-  <ul class="flex items-cener gap-4">
+  <ul class="flex items-center gap-4">
     <li class="flex-grow">
       <a href="/">
         <Icon aria-hidden="true" class="h-5 inline align-text-bottom" />
@@ -18,7 +18,12 @@ import ThemeIcon from "@components/ThemeIcon.astro";
       <a href="/works">Works</a>
     </li>
     <li>
-      <a href="/rss.xml" title="RSS feed" class="i-ph-rss-simple-bold" />
+      <a
+        href="/rss.xml"
+        title="RSS feed"
+        aria-label="RSS feed"
+        class="i-ph-rss-simple-bold"
+      />
     </li>
     <li>
       <ThemeIcon />
