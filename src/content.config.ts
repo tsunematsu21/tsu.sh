@@ -4,10 +4,10 @@ import { z } from "astro/zod";
 
 const posts = defineCollection({
   loader: glob({
-    pattern: "**/*.md",
+    pattern: "**/index.md",
     base: "./src/contents/posts",
     generateId: ({ entry }) =>
-      entry.replace(/^\d{4}-\d{2}-\d{2}_/, "").replace(/\.md$/, ""),
+      entry.replace(/\/index\.md$/, "").replace(/^\d{4}-\d{2}-\d{2}_/, ""),
   }),
   schema: z.object({
     title: z.string(),
