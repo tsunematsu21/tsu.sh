@@ -1,26 +1,6 @@
-# tsu.sh
+# [tsu.sh](https://tsu.sh)
 
-Personal website and blog built with [Astro](https://astro.build/).
+My personal website.
 
-## Development
-
-```sh
-pnpm install
-pnpm dev
-```
-
-The development server is available at `http://localhost:4321`.
-
-## Build
-
-```sh
-pnpm build
-```
-
-The static site is generated in `dist/`.
-
-## Content
-
-- Posts: `src/contents/posts/`
-- Works: `src/contents/works.yaml`
-- Pages: `src/pages/`
+Code is under [MIT](LICENSE).
+Contents are under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
