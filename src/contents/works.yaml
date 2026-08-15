@@ -3,7 +3,11 @@ Website:
   items:
     - name: tsu.sh
       url: https://github.com/tsunematsu21/tsu.sh
-      description: A personal website built with Astro
+      description: Astroで構築した個人サイト
+      icon: i-ph-browser
+    - name: 宇宙貴族猫
+      url: https://space-noble-cat.tsu.sh
+      description: 架空のアニメ「宇宙貴族猫」の公式サイト
       icon: i-ph-browser
 
 Configuration:
@@ -11,7 +15,7 @@ Configuration:
   items:
     - name: dotfiles
       url: https://github.com/tsunematsu21/dotfiles
-      description: My macOS dotfiles
+      description: NixでmacOSをセットアップするdotfiles
       icon: i-ph-wrench
 
 Automation:
@@ -19,11 +23,11 @@ Automation:
   items:
     - name: apple-music.sh
       url: https://github.com/tsunematsu21/apple-music.sh
-      description: Control the macOS Music app from the terminal with AppleScript
+      description: AppleScriptでmacOSのMusicアプリをターミナルから操作するスクリプト
       icon: i-ph-music-notes
     - name: actions-publish-gh-pages
       url: https://github.com/tsunematsu21/actions-publish-gh-pages
-      description: A GitHub Action to publish a static website using GitHub Pages
+      description: GitHub Pagesで静的サイトを公開するGitHub Action
       icon: i-ph-robot
       archived: true
 
@@ -32,6 +36,6 @@ Toys:
   items:
     - name: fb
       url: https://github.com/tsunematsu21/fb
-      description: FizzBuzz Generic Library in Go
+      description: Go製のFizzBuzzジェネリックライブラリ
       icon: i-ph-smiley-wink
       archived: true
