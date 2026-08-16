@@ -8,7 +8,7 @@ Website:
     - name: 宇宙貴族猫
       url: https://space-noble-cat.tsu.sh
       description: 架空のアニメ「宇宙貴族猫」の公式サイト
-      icon: i-ph-browser
+      icon: i-ph-cat
 
 Configuration:
   order: 2
