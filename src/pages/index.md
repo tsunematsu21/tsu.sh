@@ -27,4 +27,6 @@ create monsters to bring misery to the Earth and further their plans.
 
 ## What I do
 
-As an infrastructure engineer, I primarily handle system proposals, design, development, operations, and maintenance using AWS. Recently, I've been involved in numerous projects migrating public sector systems from on-premise to AWS environments.
+I fight evil, protect the Earth, and maintain a highly available banana
+supply chain across multiple regions. Most incidents are resolved through
+friendship, teamwork, and punching the problem until it becomes a feature.
