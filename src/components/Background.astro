@@ -1,30 +1,80 @@
-<div class="dot-background" aria-hidden="true">
+<div class="star-background" aria-hidden="true">
   <!-- biome-ignore lint/a11y/noSvgWithoutTitle: Decorative background hidden from assistive technology. -->
   <svg
-    class="dot-background__svg"
+    class="star-background__svg"
     viewBox="0 0 1600 1000"
     preserveAspectRatio="xMidYMid slice"
   >
-    <g class="dot-background__wave dot-background__wave--one">
-      <path d="M-120 160C180 50 350 270 650 160s520-110 1070 30" />
-      <path d="M-120 310C180 200 350 420 650 310s520-110 1070 30" />
-      <path d="M-120 460C180 350 350 570 650 460s520-110 1070 30" />
-      <path d="M-120 610C180 500 350 720 650 610s520-110 1070 30" />
-      <path d="M-120 760C180 650 350 870 650 760s520-110 1070 30" />
-    </g>
-    <g class="dot-background__wave dot-background__wave--two">
-      <path d="M-120 80C150 190 410-30 680 80s500 210 1040 10" />
-      <path d="M-120 230C150 340 410 120 680 230s500 210 1040 10" />
-      <path d="M-120 380C150 490 410 270 680 380s500 210 1040 10" />
-      <path d="M-120 530C150 640 410 420 680 530s500 210 1040 10" />
-      <path d="M-120 680C150 790 410 570 680 680s500 210 1040 10" />
-      <path d="M-120 830C150 940 410 720 680 830s500 210 1040 10" />
+    <g class="star-background__sky">
+      <g class="star-background__static">
+        <circle cx="74" cy="128" r="1.8" />
+        <circle cx="185" cy="62" r="2.6" />
+        <circle cx="318" cy="196" r="1.4" />
+        <circle cx="438" cy="92" r="2" />
+        <circle cx="594" cy="238" r="2.8" />
+        <circle cx="716" cy="116" r="1.5" />
+        <circle cx="874" cy="54" r="2.3" />
+        <circle cx="1018" cy="202" r="1.7" />
+        <circle cx="1172" cy="104" r="2.9" />
+        <circle cx="1315" cy="242" r="1.6" />
+        <circle cx="1488" cy="82" r="2.2" />
+        <circle cx="118" cy="368" r="2.5" />
+        <circle cx="266" cy="482" r="1.5" />
+        <circle cx="392" cy="344" r="2.1" />
+        <circle cx="536" cy="512" r="2.7" />
+        <circle cx="684" cy="386" r="1.7" />
+        <circle cx="834" cy="468" r="2.4" />
+        <circle cx="972" cy="328" r="1.4" />
+        <circle cx="1126" cy="494" r="2" />
+        <circle cx="1278" cy="358" r="2.6" />
+        <circle cx="1442" cy="436" r="1.8" />
+        <circle cx="52" cy="702" r="2.2" />
+        <circle cx="224" cy="824" r="1.7" />
+        <circle cx="364" cy="654" r="2.8" />
+        <circle cx="522" cy="786" r="1.5" />
+        <circle cx="668" cy="906" r="2.4" />
+        <circle cx="812" cy="718" r="1.6" />
+        <circle cx="958" cy="856" r="2.7" />
+        <circle cx="1098" cy="676" r="1.8" />
+        <circle cx="1246" cy="814" r="2.2" />
+        <circle cx="1394" cy="704" r="1.4" />
+        <circle cx="1534" cy="884" r="2.6" />
+      </g>
+
+      <g class="star-background__twinkle star-background__twinkle--one">
+        <circle cx="238" cy="246" r="3.2" />
+        <circle cx="1062" cy="612" r="3" />
+      </g>
+      <g class="star-background__twinkle star-background__twinkle--two">
+        <circle cx="768" cy="286" r="2.8" />
+        <circle cx="1462" cy="608" r="3.4" />
+      </g>
+      <g class="star-background__twinkle star-background__twinkle--three">
+        <circle cx="448" cy="922" r="3" />
+        <circle cx="1218" cy="914" r="2.7" />
+      </g>
+
+      <path
+        class="star-background__shooting-star star-background__shooting-star--one"
+        d="M1260 184 1110 274"
+        pathLength="1"
+      />
+      <path
+        class="star-background__shooting-star star-background__shooting-star--two"
+        d="M510 116 368 204"
+        pathLength="1"
+      />
+      <path
+        class="star-background__shooting-star star-background__shooting-star--three"
+        d="M1510 474 1348 566"
+        pathLength="1"
+      />
     </g>
   </svg>
 </div>
 
 <style>
-.dot-background {
+.star-background {
   inset: 0;
   overflow: hidden;
   pointer-events: none;
@@ -32,51 +82,120 @@
   z-index: 0;
 }
 
-.dot-background__svg {
-  color: rgb(0 0 0 / 10%);
-  height: 120%;
-  left: -10%;
-  position: absolute;
-  top: -10%;
-  width: 120%;
+.star-background__svg {
+  color: rgb(0 0 0 / 18%);
+  height: 100%;
+  width: 100%;
 }
 
-.dot-background__wave {
-  fill: none;
-  stroke: currentColor;
-  stroke-dasharray: 0 18;
-  stroke-linecap: round;
-  stroke-width: 3;
+.star-background circle {
+  fill: currentColor;
   vector-effect: non-scaling-stroke;
 }
 
-.dot-background__wave--one {
-  animation: dot-flow-one 8s linear infinite;
+.star-background__sky {
+  animation: star-drift 120s ease-in-out infinite alternate;
+  transform-box: view-box;
+  transform-origin: 50% 135%;
 }
 
-.dot-background__wave--two {
-  animation: dot-flow-two 11s linear infinite;
-  opacity: 0.45;
+.star-background__static circle:nth-child(3n + 1) {
+  opacity: 0.42;
 }
 
-:global(html.dark) .dot-background__svg {
-  color: rgb(255 255 255 / 13%);
+.star-background__static circle:nth-child(3n + 2) {
+  opacity: 0.68;
 }
 
-@keyframes dot-flow-one {
-  to {
-    stroke-dashoffset: -18;
+.star-background__twinkle {
+  animation: star-twinkle linear infinite;
+  opacity: 0.35;
+}
+
+.star-background__twinkle--one {
+  animation-duration: 7s;
+}
+
+.star-background__twinkle--two {
+  animation-duration: 11s;
+}
+
+.star-background__twinkle--three {
+  animation-duration: 13s;
+}
+
+.star-background__shooting-star {
+  animation: shooting-star 87s linear infinite;
+  fill: none;
+  opacity: 0;
+  stroke: currentColor;
+  stroke-dasharray: 0.14 0.86;
+  stroke-dashoffset: 1;
+  stroke-linecap: round;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.star-background__shooting-star--two {
+  animation-delay: -29s;
+}
+
+.star-background__shooting-star--three {
+  animation-delay: -58s;
+}
+
+:global(html.dark) .star-background__svg {
+  color: rgb(255 255 255 / 24%);
+}
+
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  48% {
+    opacity: 0.85;
+  }
+
+  62% {
+    opacity: 0.5;
   }
 }
 
-@keyframes dot-flow-two {
+@keyframes star-drift {
+  from {
+    transform: rotate(-0.7deg);
+  }
+
   to {
-    stroke-dashoffset: 18;
+    transform: rotate(0.7deg);
+  }
+}
+
+@keyframes shooting-star {
+  0%,
+  24%,
+  28%,
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+
+  25% {
+    opacity: 0.75;
+  }
+
+  27% {
+    opacity: 0;
+    stroke-dashoffset: 0;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .dot-background__wave {
+  .star-background__sky,
+  .star-background__twinkle,
+  .star-background__shooting-star {
     animation: none;
   }
 }
@@ -84,8 +203,13 @@
 
 <script is:inline>
 const backgroundAnimations = [
-  { selector: ".dot-background__wave--one", duration: 8000 },
-  { selector: ".dot-background__wave--two", duration: 11000 },
+  { selector: ".star-background__sky", duration: 120000 },
+  { selector: ".star-background__twinkle--one", duration: 7000 },
+  { selector: ".star-background__twinkle--two", duration: 11000 },
+  { selector: ".star-background__twinkle--three", duration: 13000 },
+  { selector: ".star-background__shooting-star--one", duration: 87000 },
+  { selector: ".star-background__shooting-star--two", duration: 87000 },
+  { selector: ".star-background__shooting-star--three", duration: 87000 },
 ];
 
 for (const { selector, duration } of backgroundAnimations) {
