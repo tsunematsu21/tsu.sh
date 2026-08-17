@@ -1,0 +1,204 @@
+---
+import SignatureSvg from "@assets/signature.svg";
+import ThankYouSvg from "@assets/thanks.svg";
+---
+
+<button
+  type="button"
+  class="signature-button"
+  aria-label="Replace signature with Thank You"
+  data-signature
+  data-state="signature"
+>
+  <span class="signature-stage">
+    <SignatureSvg class="signature-svg" aria-hidden="true" />
+    <ThankYouSvg class="thank-you-svg" aria-hidden="true" />
+  </span>
+</button>
+
+<script>
+const signature = document.querySelector<HTMLButtonElement>("[data-signature]");
+const signatureSvg = signature?.querySelector(".signature-svg");
+const thankYouSvg = signature?.querySelector(".thank-you-svg");
+const signatureCrossbar = signature?.querySelector(".signature-crossbar");
+const youStroke = signature?.querySelector(".you-stroke");
+
+const setState = (state: string, label: string, disabled: boolean) => {
+  if (!signature) return;
+
+  signature.dataset.state = state;
+  signature.ariaLabel = label;
+  signature.disabled = disabled;
+};
+
+const waitForAnimation = (
+  element: Element | null | undefined,
+  callback: () => void,
+) => {
+  if (!element) {
+    callback();
+    return;
+  }
+
+  element.addEventListener("animationend", callback, { once: true });
+};
+
+const showSignature = () =>
+  setState("signature", "Replace signature with Thank You", false);
+
+const showThankYou = () =>
+  setState("thank-you", "Replace Thank You with signature", false);
+
+signature?.addEventListener("click", () => {
+  const state = signature.dataset.state;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (state === "signature") showThankYou();
+    if (state === "thank-you") showSignature();
+    return;
+  }
+
+  if (state === "signature") {
+    waitForAnimation(signatureSvg, () => {
+      waitForAnimation(youStroke, showThankYou);
+      setState("drawing-thank-you", "Drawing Thank You", true);
+    });
+    setState("erasing-signature", "Erasing signature", true);
+  }
+
+  if (state === "thank-you") {
+    waitForAnimation(thankYouSvg, () => {
+      waitForAnimation(signatureCrossbar, showSignature);
+      setState("drawing-signature", "Drawing signature", true);
+    });
+    setState("erasing-thank-you", "Erasing Thank You", true);
+  }
+});
+</script>
+
+<style is:global>
+.signature-button {
+  --stroke-easing: cubic-bezier(0.65, 0, 0.35, 1);
+
+  display: block;
+  width: 12rem;
+  margin-left: auto;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+.signature-button:disabled {
+  cursor: default;
+}
+
+.signature-stage {
+  position: relative;
+  display: block;
+  aspect-ratio: 654 / 188;
+}
+
+.signature-svg,
+.thank-you-svg {
+  position: absolute;
+  inset: 50% auto auto 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  transform: translateY(-50%);
+}
+
+.signature-svg path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.thank-you-svg {
+  opacity: 0;
+}
+
+.thank-you-svg path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.signature-button[data-state="erasing-signature"] .signature-svg,
+.signature-button[data-state="erasing-thank-you"] .thank-you-svg {
+  animation: wipe-right-to-left 1000ms var(--stroke-easing) both;
+}
+
+.signature-button:is(
+    [data-state="drawing-thank-you"],
+    [data-state="thank-you"],
+    [data-state="erasing-thank-you"]
+  )
+  .signature-svg {
+  opacity: 0;
+}
+
+.signature-button:is(
+    [data-state="drawing-thank-you"],
+    [data-state="thank-you"],
+    [data-state="erasing-thank-you"]
+  )
+  .thank-you-svg {
+  opacity: 1;
+}
+
+.signature-button[data-state="drawing-thank-you"] .thank-stroke {
+  animation: draw-thank-you 1800ms var(--stroke-easing) forwards;
+}
+
+.signature-button[data-state="drawing-thank-you"] .you-stroke {
+  animation: draw-thank-you 1500ms 1650ms var(--stroke-easing) forwards;
+}
+
+.signature-button:is([data-state="thank-you"], [data-state="erasing-thank-you"])
+  .thank-you-svg
+  path {
+  stroke-dashoffset: 0;
+}
+
+.signature-button[data-state="drawing-signature"] .signature-stroke {
+  animation: draw-signature 1400ms var(--stroke-easing) both;
+}
+
+.signature-button[data-state="drawing-signature"] .signature-crossbar {
+  animation: draw-signature 450ms 1250ms var(--stroke-easing) both;
+}
+
+@keyframes wipe-right-to-left {
+  from {
+    clip-path: inset(0 0 0 0);
+  }
+
+  to {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+@keyframes draw-thank-you {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes draw-signature {
+  from {
+    stroke-dashoffset: 1;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signature-button path {
+    animation: none;
+  }
+}
+</style>
