@@ -20,3 +20,5 @@ prose: true
 地球の片隅より愛を込めて捧げます。
 
 幸あれ。
+
+<img src="/signature.svg" alt="Signature" class="dark:invert w-48 ml-auto" />
