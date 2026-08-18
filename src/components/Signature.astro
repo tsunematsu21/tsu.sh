@@ -149,11 +149,11 @@ signature?.addEventListener("click", () => {
 }
 
 .signature-button[data-state="drawing-thank-you"] .thank-stroke {
-  animation: draw-thank-you 1800ms var(--stroke-easing) forwards;
+  animation: draw-thank-you 1450ms var(--stroke-easing) forwards;
 }
 
 .signature-button[data-state="drawing-thank-you"] .you-stroke {
-  animation: draw-thank-you 1500ms 1650ms var(--stroke-easing) forwards;
+  animation: draw-thank-you 1200ms 1300ms var(--stroke-easing) forwards;
 }
 
 .signature-button:is([data-state="thank-you"], [data-state="erasing-thank-you"])
@@ -163,11 +163,11 @@ signature?.addEventListener("click", () => {
 }
 
 .signature-button[data-state="drawing-signature"] .signature-stroke {
-  animation: draw-signature 1400ms var(--stroke-easing) both;
+  animation: draw-signature 2000ms var(--stroke-easing) both;
 }
 
 .signature-button[data-state="drawing-signature"] .signature-crossbar {
-  animation: draw-signature 450ms 1250ms var(--stroke-easing) both;
+  animation: draw-signature 500ms 1800ms var(--stroke-easing) both;
 }
 
 @keyframes wipe-right-to-left {
