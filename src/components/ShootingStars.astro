@@ -1,0 +1,101 @@
+<span class="shooting-star" aria-hidden="true" />
+
+<style>
+:global(.shooting-star) {
+  --shooting-star-angle: 150deg;
+  --shooting-star-dx: -140px;
+  --shooting-star-dy: 84px;
+  background: linear-gradient(90deg, transparent, currentColor);
+  color: rgb(0 0 0 / 32%);
+  filter: drop-shadow(0 0 1.5px currentColor);
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  transform: rotate(var(--shooting-star-angle));
+  transform-origin: right center;
+  width: 140px;
+  z-index: 1;
+}
+
+:global(.shooting-star.is-visible) {
+  animation: shooting-star 0.72s linear both;
+}
+
+:global(html.dark) :global(.shooting-star) {
+  color: rgb(225 232 255 / 65%);
+}
+
+@keyframes shooting-star {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(var(--shooting-star-angle));
+  }
+
+  15% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(var(--shooting-star-dx), var(--shooting-star-dy))
+      rotate(var(--shooting-star-angle));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(.shooting-star.is-visible) {
+    animation: none;
+  }
+}
+</style>
+
+<script is:inline>
+const shootingStar = document.querySelector(".shooting-star");
+const shootingStarInterval = 30000;
+const shootingStarMargin = 24;
+const shootingStarDistance = 140;
+const shootingStarVerticalDistance = 84;
+
+const randomizeShootingStar = () => {
+  if (!(shootingStar instanceof HTMLElement)) return;
+
+  const maxX = Math.max(
+    shootingStarMargin + shootingStarDistance,
+    window.innerWidth - shootingStarMargin,
+  );
+  const maxY = Math.max(
+    shootingStarMargin,
+    window.innerHeight - shootingStarMargin - shootingStarVerticalDistance,
+  );
+  const startX =
+    shootingStarMargin +
+    Math.random() *
+      Math.max(0, maxX - shootingStarMargin - shootingStarDistance);
+  const startY =
+    shootingStarMargin + Math.random() * Math.max(0, maxY - shootingStarMargin);
+
+  shootingStar.style.left = `${startX}px`;
+  shootingStar.style.top = `${startY}px`;
+};
+
+const showShootingStar = () => {
+  if (!(shootingStar instanceof HTMLElement)) return;
+
+  randomizeShootingStar();
+  shootingStar.classList.remove("is-visible");
+  void shootingStar.offsetWidth;
+  shootingStar.classList.add("is-visible");
+  shootingStar.addEventListener(
+    "animationend",
+    () => shootingStar.classList.remove("is-visible"),
+    { once: true },
+  );
+  window.setTimeout(showShootingStar, shootingStarInterval);
+};
+
+if (shootingStar instanceof HTMLElement) {
+  showShootingStar();
+  window.addEventListener("resize", randomizeShootingStar, { passive: true });
+}
+</script>
