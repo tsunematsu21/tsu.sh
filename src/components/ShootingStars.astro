@@ -95,7 +95,10 @@ const showShootingStar = () => {
 };
 
 if (shootingStar instanceof HTMLElement) {
-  showShootingStar();
+  window.setTimeout(
+    showShootingStar,
+    5000 + Math.random() * (shootingStarInterval - 5000),
+  );
   window.addEventListener("resize", randomizeShootingStar, { passive: true });
 }
 </script>
