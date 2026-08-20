@@ -1,0 +1,295 @@
+---
+interface Props {
+  hitPoints?: number;
+}
+
+const { hitPoints = 5 } = Astro.props;
+const maxHitPoints = Math.max(1, Math.floor(hitPoints));
+const hearts = Array.from({ length: maxHitPoints });
+---
+
+<div class="avatar-wrap flex flex-col items-center justify-center">
+  <span class="avatar-ouch text-xs font-bold" aria-hidden="true"
+    >&#92; Ouch! /</span
+  >
+  <button
+    type="button"
+    class="inline-block"
+    aria-label={`Attack avatar (${maxHitPoints} hit points)`}
+    data-avatar
+  >
+    <img
+      src="/avatar.webp"
+      alt="Avatar"
+      class="max-w-64 m-auto"
+      aria-hidden="true"
+    >
+  </button>
+  <span class="avatar-health" aria-hidden="true">
+    {hearts.map(() => <span class="avatar-heart i-ph-heart-straight-fill" />)}
+  </span>
+</div>
+
+<script>
+document
+  .querySelectorAll<HTMLButtonElement>("[data-avatar]")
+  .forEach((button) => {
+    const avatarWrap = button.closest(".avatar-wrap");
+    const hearts = avatarWrap?.querySelectorAll<HTMLElement>(".avatar-heart");
+    let health = hearts?.length ?? 0;
+
+    button.addEventListener("click", () => {
+      if (!avatarWrap || !hearts || health === 0) return;
+
+      health -= 1;
+      avatarWrap.classList.add("has-damage");
+      hearts[health]?.classList.add("is-lost");
+      button.setAttribute(
+        "aria-label",
+        health === 0
+          ? "Avatar defeated"
+          : `Attack avatar (${health} hit points remaining)`,
+      );
+
+      if (health === 0) {
+        button.classList.add("is-defeated");
+        button.disabled = true;
+      }
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      avatarWrap.classList.remove("is-rebounding");
+      button.classList.remove("is-rebounding");
+      void button.offsetWidth;
+      avatarWrap.classList.add("is-rebounding");
+      button.classList.add("is-rebounding");
+    });
+  });
+</script>
+
+<style>
+button[data-avatar] {
+  position: relative;
+  clip-path: circle(50% at 50% 50%);
+}
+
+.avatar-wrap {
+  --avatar-hit-duration: 400ms;
+
+  position: relative;
+}
+
+.avatar-ouch {
+  opacity: 0;
+  transform: scale(0.7);
+}
+
+.avatar-health {
+  opacity: 0;
+  transform: scale(0.8);
+  transition:
+    opacity 160ms ease-out,
+    transform 160ms ease-out;
+}
+
+.avatar-wrap.has-damage .avatar-health {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.avatar-heart {
+  display: inline-block;
+  transition:
+    opacity 160ms ease-out,
+    transform 160ms ease-out;
+}
+
+.avatar-heart.is-lost {
+  opacity: 0;
+  transform: scale(0);
+}
+
+button[data-avatar] img {
+  position: relative;
+  z-index: 0;
+}
+
+button[data-avatar]::before,
+button[data-avatar]::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  opacity: 0;
+}
+
+button[data-avatar]::before {
+  z-index: 1;
+  background: linear-gradient(
+    to right,
+    transparent 0 12%,
+    rgb(255 255 255 / 0.9) 12% 30%,
+    transparent 30% 58%,
+    rgb(255 255 255 / 0.9) 58% 74%,
+    transparent 74%
+  );
+}
+
+button[data-avatar]::after {
+  z-index: 2;
+  background: url("/avatar.webp") center / 100% 100% no-repeat;
+}
+
+button[data-avatar]:active {
+  transform: translateY(0.25rem) scale(0.94);
+}
+
+button[data-avatar].is-rebounding {
+  animation: avatar-rebound var(--avatar-hit-duration)
+    cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+button[data-avatar].is-rebounding::before {
+  animation: avatar-data-loss var(--avatar-hit-duration) steps(4, end);
+}
+
+button[data-avatar].is-rebounding::after {
+  animation: avatar-fragment-shift var(--avatar-hit-duration) steps(4, end);
+}
+
+.avatar-wrap.is-rebounding .avatar-ouch {
+  animation: avatar-ouch var(--avatar-hit-duration)
+    cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+button[data-avatar].is-defeated {
+  pointer-events: none;
+}
+
+button[data-avatar].is-defeated img {
+  animation: avatar-defeat 600ms ease forwards;
+}
+
+@keyframes avatar-rebound {
+  from {
+    transform: translateY(0.25rem) scale(0.94);
+  }
+
+  60% {
+    transform: translateY(-0.05rem) scale(1.015);
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes avatar-data-loss {
+  from {
+    clip-path: inset(0);
+    opacity: 0;
+  }
+
+  20% {
+    clip-path: inset(0 0 76% 0);
+    opacity: 0.9;
+  }
+
+  52% {
+    clip-path: inset(46% 0 30% 0);
+    opacity: 0.85;
+  }
+
+  76% {
+    clip-path: inset(74% 0 8% 0);
+    opacity: 0.8;
+  }
+
+  to {
+    clip-path: inset(0);
+    opacity: 0;
+  }
+}
+
+@keyframes avatar-fragment-shift {
+  from,
+  to {
+    clip-path: inset(0);
+    opacity: 0;
+    transform: none;
+  }
+
+  20%,
+  32% {
+    clip-path: inset(0 0 76% 0);
+    opacity: 1;
+    transform: translateX(-0.55rem);
+  }
+
+  52%,
+  64% {
+    clip-path: inset(46% 0 30% 0);
+    opacity: 1;
+    transform: translateX(0.45rem);
+  }
+
+  76%,
+  84% {
+    clip-path: inset(74% 0 8% 0);
+    opacity: 1;
+    transform: translateX(-0.32rem);
+  }
+}
+
+@keyframes avatar-ouch {
+  from {
+    opacity: 0;
+    transform: translateY(0.25rem) scale(0.7);
+  }
+
+  25%,
+  70% {
+    opacity: 1;
+    transform: translateY(-0.25rem) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-0.6rem) scale(0.95);
+  }
+}
+
+@keyframes avatar-defeat {
+  to {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar-health,
+  .avatar-heart {
+    transition: none;
+  }
+
+  button[data-avatar]:active,
+  button[data-avatar].is-rebounding {
+    animation: none;
+    transform: none;
+  }
+
+  button[data-avatar].is-rebounding::before,
+  button[data-avatar].is-rebounding::after {
+    animation: none;
+  }
+
+  .avatar-wrap.is-rebounding .avatar-ouch {
+    animation: none;
+  }
+
+  button[data-avatar].is-defeated img {
+    animation: none;
+    opacity: 0;
+  }
+}
+</style>
