@@ -1,11 +1,14 @@
 ---
+
 title: dotfiles管理をNixに移行した
 pubDate: 2026-07-25
 description: その方がかっこいいから❄️
 category: tech
 tags:
-  - nix
-  - dotfiles
+
+- nix
+- dotfiles
+
 ---
 
 https://github.com/tsunematsu21/dotfiles
@@ -30,10 +33,10 @@ https://github.com/tsunematsu21/dotfiles
 
 - [NixOS/nix-installer](https://github.com/NixOS/nix-installer): Nixのインストーラー
 - Flakes
-	- [hercules-ci/flake-parts](https://github.com/hercules-ci/flake-parts): モジュールの分割
-	- [denful/import-tree](https://github.com/denful/import-tree): モジュールの自動インポート
-	- [nix-darwin/nix-darwin](https://github.com/nix-darwin/nix-darwin): システム設定やGUIアプリの管理
-	- [nix-community/home-manager](https://github.com/nix-community/home-manager): パッケージや設定ファイルの管理
-	- [numtide/treefmt-nix](https://github.com/numtide/treefmt-nix): フォーマッター
+  - [hercules-ci/flake-parts](https://github.com/hercules-ci/flake-parts): モジュールの分割
+  - [denful/import-tree](https://github.com/denful/import-tree): モジュールの自動インポート
+  - [nix-darwin/nix-darwin](https://github.com/nix-darwin/nix-darwin): システム設定やGUIアプリの管理
+  - [nix-community/home-manager](https://github.com/nix-community/home-manager): パッケージや設定ファイルの管理
+  - [numtide/treefmt-nix](https://github.com/numtide/treefmt-nix): フォーマッター
 
 今後も人様のdotfilesを眺めつつアップデートしていきたいです。

@@ -1,11 +1,14 @@
 ---
+
 title: Apple Watchを買いました
 pubDate: 2025-12-24
 description: Fitbitからの脱却、祝Apple Watchデビュー
 category: life
 tags:
-  - gadget
-  - apple
+
+- gadget
+- apple
+
 ---
 
 腕時計はつけないタイプでしたが、健康診断でハイスコア（特に肝臓が高得点）を叩き出しまして、
