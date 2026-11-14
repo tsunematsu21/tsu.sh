@@ -1,11 +1,14 @@
 ---
+
 title: ランチャーにTunaを使ってみる
 pubDate: 2026-07-26
 description: キーボードから手を離さないとかっこいいよね
 category: tech
 tags:
-  - tuna
-  - macos
+
+- tuna
+- macos
+
 ---
 
 https://tunaformac.com/
